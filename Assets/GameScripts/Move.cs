@@ -10,12 +10,15 @@ public class Move : MonoBehaviour
     [SerializeField] private Transform pointBullet;
     [SerializeField] private Button attackButton;
     
-
     private float speedBullet = 500f;
 
     private void OnEnable()
     {
         attackButton.onClick.AddListener(StartAttack);
+    }
+    private void OnDisable()
+    {
+        attackButton.onClick.RemoveListener(StartAttack);
     }
 
     void Update()
@@ -25,7 +28,6 @@ public class Move : MonoBehaviour
             RotateShip();
         }
     }
-
     private void RotateShip()
     {
         Touch touch = Input.GetTouch(0);

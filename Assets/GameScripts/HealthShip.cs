@@ -2,16 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HealthShip : MonoBehaviour
 {
     public int health = 5;
-    [SerializeField] private CanvasGroup canvas;
-
-    private void Start()
-    {
-        canvas.alpha = 0f;
-    }
+    public event UnityAction Died;
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -27,9 +23,11 @@ public class HealthShip : MonoBehaviour
         Debug.Log(health);
         if (health <= 0)
         {
-            Destroy(gameObject);
-            Time.timeScale = 0f;
-            canvas.alpha = 1f;
+            DiePlayer();
         }
+    }
+    private void DiePlayer()
+    {
+        Died?.Invoke();
     }
 }
