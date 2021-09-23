@@ -8,6 +8,12 @@ public class HealthShip : MonoBehaviour
 {
     public int health = 5;
     public event UnityAction Died;
+    public event UnityAction<int> HealthChanged;
+
+    private void Start()
+    {
+        HealthChanged?.Invoke(health);
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -20,7 +26,7 @@ public class HealthShip : MonoBehaviour
     private void HealthChange()
     {
         health--;
-        Debug.Log(health);
+        HealthChanged?.Invoke(health);
         if (health <= 0)
         {
             DiePlayer();
