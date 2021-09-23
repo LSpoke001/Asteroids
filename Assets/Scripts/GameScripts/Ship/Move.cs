@@ -11,6 +11,12 @@ public class Move : MonoBehaviour
     [SerializeField] private Button attackButton;
     
     private float speedBullet = 500f;
+    private ShipSound shipSound;
+
+    private void Start()
+    {
+        shipSound = GetComponentInChildren<ShipSound>();
+    }
 
     private void OnEnable()
     {
@@ -45,5 +51,6 @@ public class Move : MonoBehaviour
     {
         Bullet newBullet = Instantiate(bulletPrefab, pointBullet.position, transform.rotation);
         newBullet.GetComponent<Rigidbody2D>().AddForce(transform.up * speedBullet);
+        shipSound.Play("Shoot");
     }
 }

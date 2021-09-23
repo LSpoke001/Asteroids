@@ -11,15 +11,19 @@ public class CreateAsteroids : MonoBehaviour
 
     public event UnityAction<int> CountChanged;
     private int count = 0;
+    private GameObject spawner;
 
     private void Start()
     {
-        var spawner = Instantiate(_asteroidsSpawner, transform);
+        CreateSpawner();
+    }
+    private void CreateSpawner()
+    {
+        AsteroidsSpawner spawner = Instantiate(_asteroidsSpawner, transform);
         spawner.InitSpawner(_asteroid);
         spawner.CrashedAsteroid += ChangeCount;
         CountChanged?.Invoke(count);
     }
-
     private void ChangeCount()
     {
         count++;

@@ -10,9 +10,12 @@ public class HealthShip : MonoBehaviour
     public event UnityAction Died;
     public event UnityAction<int> HealthChanged;
 
+    private ShipSound shipSound;
+
     private void Start()
     {
         HealthChanged?.Invoke(health);
+        shipSound = GetComponentInChildren<ShipSound>();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -27,9 +30,11 @@ public class HealthShip : MonoBehaviour
     {
         health--;
         HealthChanged?.Invoke(health);
+        shipSound.Play("Hit");
         if (health <= 0)
         {
             DiePlayer();
+            shipSound.Play("Death");
         }
     }
     private void DiePlayer()
