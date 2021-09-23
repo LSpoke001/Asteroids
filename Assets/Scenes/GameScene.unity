@@ -1489,8 +1489,8 @@ GameObject:
   - component: {fileID: 1917579618}
   - component: {fileID: 1917579621}
   - component: {fileID: 1917579620}
-  - component: {fileID: 1917579617}
   - component: {fileID: 1917579622}
+  - component: {fileID: 1917579617}
   m_Layer: 8
   m_Name: Ship
   m_TagString: Untagged
@@ -1507,7 +1507,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1917579616}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3056daeeecceddf48a265691f418b4de, type: 3}
+  m_Script: {fileID: 11500000, guid: b7f9f744816cfbb4cab3a3b96984eb29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 100
