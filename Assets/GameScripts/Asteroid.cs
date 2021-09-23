@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Asteroid : MonoBehaviour
 { public Sprite[] sprites;
@@ -10,6 +11,8 @@ public class Asteroid : MonoBehaviour
     public float minSize = 0.5f;
     public float movementSpeed = 50.0f;
     private float maxLifetime = 15f;
+
+    public event UnityAction<Asteroid> Crashed;
 
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidbody2D;
@@ -42,9 +45,8 @@ public class Asteroid : MonoBehaviour
                 CreateSplit();
                 CreateSplit();
             }
-
-            //FindObjectOfType<GameManager>().AsteroidDestroyed(this);
             Destroy(this.gameObject);
+            Crashed?.Invoke(this);
         }
     }
     private Asteroid CreateSplit()
